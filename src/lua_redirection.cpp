@@ -1,7 +1,11 @@
 #include "lua_redirection.hpp"
 #include <stdio.h>
+#include <unistd.h>
 
+static int temp_stdout;
 static int redirection_enable(lua_State* L) {
+	temp_stdout = dup(1);
+
 	const char* fileName = lua_tostring(L, 1);
 	freopen(fileName, "w", stdout);
 	printf("enable the %s redirection",fileName);
@@ -9,7 +13,7 @@ static int redirection_enable(lua_State* L) {
 }
 
 static int redirection_disable(lua_State* L) {
-	freopen("CON", "w", stdout);
+	freopen( "/dev/tty", "w", stdout );
 	printf("disable the redirection");
 	return 0;
 }
