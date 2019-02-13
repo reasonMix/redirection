@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0)
 
-project (netfoxpack)
+project (redirection)
 
 
 # compile in release  mode by default
@@ -45,20 +45,20 @@ list(APPEND SOURCES
 )
 
 if(BUILD_SHARED_LIBS)
-  add_library(netfoxpack MODULE ${SOURCES})
-  target_link_libraries(netfoxpack ${LUA_LIBRARIES} ${LIBUV_LIBRARIES} ${OPENSSL_LIBRARIES})
-  set_target_properties(netfoxpack PROPERTIES OUTPUT_NAME "netfoxpack" PREFIX "")
+  add_library(redirection MODULE ${SOURCES})
+  target_link_libraries(redirection ${LUA_LIBRARIES} ${LIBUV_LIBRARIES} ${OPENSSL_LIBRARIES})
+  set_target_properties(redirection PROPERTIES OUTPUT_NAME "redirection" PREFIX "")
 else()
-  add_library(netfoxpack ${SOURCES})
-  set_target_properties(netfoxpack PROPERTIES OUTPUT_NAME "luanetfoxpack")
+  add_library(redirection ${SOURCES})
+  set_target_properties(redirection PROPERTIES OUTPUT_NAME "luaredirection")
 endif()
 
-target_compile_features(netfoxpack PRIVATE cxx_auto_type cxx_range_for cxx_nullptr)
+target_compile_features(redirection PRIVATE cxx_auto_type cxx_range_for cxx_nullptr)
 
 if (LINK_FLAGS)
-  set_target_properties(netfoxpack PROPERTIES LINK_FLAGS ${LINK_FLAGS})
+  set_target_properties(redirection PROPERTIES LINK_FLAGS ${LINK_FLAGS})
 endif()
 
 if (CMAKE_INSTALL_PREFIX)
-  install(TARGETS netfoxpack DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
+  install(TARGETS redirection DESTINATION "${CMAKE_INSTALL_PREFIX}/lib")
 endif()
