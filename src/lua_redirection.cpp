@@ -20,7 +20,7 @@ static luaL_Reg api[] = {
     { NULL, NULL },
 };
 
-int luaopen_netfoxpack(lua_State* L)
+int luaopen_redirection(lua_State* L)
 {
   // register the net api
   lua_newtable(L);
