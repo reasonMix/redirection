@@ -1,11 +1,11 @@
-#include "lua_netfoxpack.hpp"
+#include "lua_redirection.hpp"
 #include <stdio.h>
 
 static int redirection_enable(lua_State* L) {
 	const char* fileName = lua_tostring(L, 1);
 	freopen(fileName, "w", stdout);
 	printf("enable the %s redirection",fileName);
-	return 0
+	return 0;
 }
 
 static int redirection_disable(lua_State* L) {
